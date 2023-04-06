@@ -1,0 +1,94 @@
+<html>
+
+<head />
+
+<body>
+    <h1>Socure SDK Demo - accountCreated</h1>
+    <br />
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <td style="width:50%; vertical-align: top;">
+                <h2>PII</h2>
+                <table>
+                    <tr>
+                        <td width="100px">First Name</td>
+                        <td>{{firstName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Middle Name</td>
+                        <td>{{middleName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td>{{lastName}}</td>
+                    </tr>
+                    <tr>
+                        <td width="100px">Email</td>
+                        <td>{{email}}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>{{phone}}</td>
+                    </tr>
+                    <tr>
+                        <td width="100px">Date of Birth</td>
+                        <td>{{dob}}</td>
+                    </tr>
+                    <tr>
+                        <td width="100px">Tax Id Number</td>
+                        <td>{{taxIdNumber}}</td>
+                    </tr>
+                </table>
+            </td>
+            <td style="width:50%; vertical-align: top;">
+                <h2>Address</h2>
+                <table>
+                    <tr>
+                        <td width="100px">Street 1</td>
+                        <td>{{street1}}</td>
+                    </tr>
+                    <tr>
+                        <td>Street 2</td>
+                        <td>{{street2}}</td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td>{{city}}</td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td>{{state}}</td>
+                    </tr>
+                    <tr>
+                        <td>Postal/ZIP</td>
+                        <td>{{postal}}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table>
+        <th>
+            <tr>
+                <td>accountId</td><td>{{accountId}}</td>
+            </tr>
+            <tr>
+                <td>socureResponse</td><td>{{socureResponse}}</td>
+            </tr>
+            <tr>
+                <td>documentUuid:</td><td>{{documentUuid}}</td>
+            </tr>
+            <tr>
+                <td>deviceId:</td><td>{{deviceId}}</td>
+            </tr>
+        </th>
+    </table>
+    <br />
+    <script type="text/javascript">sessionStorage.removeItem("socureDeviceId");</script>
+    <form action="/">
+        <input type="submit" value="Home"/>
+    </form>
+</body>
+
+</html>

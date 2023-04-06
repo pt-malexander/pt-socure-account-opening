@@ -1,0 +1,112 @@
+<html>
+
+<head />
+
+<body>
+    <h1>Socure SDK Demo - onSuccess</h1>
+    <br />
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <td style="width:50%; vertical-align: top;">
+                <h2>PII</h2>
+                <table>
+                    <tr>
+                        <td width="100px">First Name</td>
+                        <td>{{firstName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Middle Name</td>
+                        <td>{{middleName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td>{{lastName}}</td>
+                    </tr>
+                    <tr>
+                        <td width="100px">Email</td>
+                        <td>{{email}}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>{{phone}}</td>
+                    </tr>
+                    <tr>
+                        <td width="100px">Date of Birth</td>
+                        <td>{{dob}}</td>
+                    </tr>
+                    <tr>
+                        <td width="100px">Tax Id Number</td>
+                        <td>{{taxIdNumber}}</td>
+                    </tr>
+                </table>
+            </td>
+            <td style="width:50%; vertical-align: top;">
+                <h2>Address</h2>
+                <table>
+                    <tr>
+                        <td width="100px">Street 1</td>
+                        <td>{{street1}}</td>
+                    </tr>
+                    <tr>
+                        <td>Street 2</td>
+                        <td>{{street2}}</td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td>{{city}}</td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td>{{state}}</td>
+                    </tr>
+                    <tr>
+                        <td>Postal/ZIP</td>
+                        <td>{{postal}}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table>
+        <th>
+            <tr>
+                <td>socureResponse</td><td>{{socureResponse}}</td>
+            </tr>
+            <tr>
+                <td>referenceId</td><td>{{referenceId}}</td>
+            </tr>
+            <tr>
+                <td>documentUuid:</td><td>{{documentUuid}}</td>
+            </tr>
+            <tr>
+                <td>deviceId:</td><td>{{deviceId}}</td>
+            </tr>
+        </th>
+    </table>
+    <br />
+    <form action="createAccount" method="post">
+        <input type="text" name="referenceId" value="{{referenceId}}" hidden="true"/>
+        <input type="text" name="documentUuid" value="{{documentUuid}}" hidden="true"/>
+        <input type="text" name="deviceId" value="{{deviceId}}" hidden="true"/>
+        <input type="text" name="firstName" value="{{firstName}}" hidden="true"/>
+        <input type="text" name="middleName" value="{{middleName}}" hidden="true"/>
+        <input type="text" name="lastName" value="{{lastName}}" hidden="true"/>
+        <input type="text" name="email" value="{{email}}" hidden="true"/>
+        <input type="text" name="phone" value="{{phone}}" hidden="true"/>
+        <input type="text" name="dob" value="{{dob}}" hidden="true"/>
+        <input type="text" name="taxIdNumber" value="{{taxIdNumber}}" hidden="true"/>
+        <input type="text" name="street1" value="{{street1}}" hidden="true"/>
+        <input type="text" name="street2" value="{{street2}}" hidden="true"/>
+        <input type="text" name="city" value="{{city}}" hidden="true"/>
+        <input type="text" name="state" value="{{state}}" hidden="true"/>
+        <input type="text" name="postal" value="{{postal}}" hidden="true"/>
+        <input type="submit" value="Create Account"/>
+    </form>
+    <br/>
+    <form action="/">
+        <input type="submit" value="Home"/>
+    </form>
+</body>
+
+</html>

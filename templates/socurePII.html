@@ -1,0 +1,103 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="https://websdk.socure.com/bundle.js"></script>
+    <script type="text/javascript" src="https://js.dvnfo.com/devicer.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        function doDeviceRisk() {
+            $(document).ready(function () {
+                var deviceFPOptions = {
+                    publicKey: '{{socureKey}}',
+                    endpoint: 'https://dvnfo.com',
+                    userConsent: true,
+                    context: 'signup'
+                };
+                devicer.run(deviceFPOptions, function (response) {
+                    console.log("devicer: ", response);
+                    sessionStorage.setItem("socureDeviceId", response.sessionId);
+                })
+            });
+        }
+
+        doDeviceRisk();
+    </script>
+
+</head>
+
+<body>
+    <h1>Create account with Socure - Collect PII</h1>
+    <form action="socure" method="post">
+        <h2>Name</h2>
+        <table>
+            <tr>
+                <td width="100px">First Name</td>
+                <td><input name="firstName" size=50 value="George"/></td>
+            </tr>
+            <tr>
+                <td>Middle Name</td>
+                <td><input name="middleName" size=50 /></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td><input name="lastName" size=50 value="Jetson"/></td>
+            </tr>
+        </table>
+        <h2>Email Address &amp; Phone Number</h2>
+        <table>
+            <tr>
+                <td width="100px">Email</td>
+                <td><input name="email" size=50 value="gjetson@mailinator.com"/></td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td><input name="phone" size=50 value="5551234567"/></td>
+            </tr>
+        </table>
+        <h2>Date of Birth</h2>
+        <table>
+            <tr>
+                <td width="100px">Date of Birth</td>
+                <td><input type="date" name="dob" size=15 value="1980-01-01"/></td>
+            </tr>
+        </table>
+        <h2>Tax Information</h2>
+        <table>
+            <tr>
+                <td width="100px">Tax Id Number</td>
+                <td><input name="taxIdNumber" size=50 value="111234567"/></td>
+            </tr>
+        </table>
+        <h2>Address</h2>
+        <table>
+            <tr>
+                <td width="100px">Street 1</td>
+                <td><input name="street1" size=50 value="123 Main St"/></td>
+            </tr>
+            <tr>
+                <td>Street 2</td>
+                <td><input name="street2" size=50 value="happy"/></td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td><input name="city" size=50 value="Cosmos"/></td>
+            </tr>
+            <tr>
+                <td>State</td>
+                <td><input name="state" size=50 value="CO"/></td>
+            </tr>
+            <tr>
+                <td>Postal/ZIP</td>
+                <td><input name="postal" size=50 value="12345"/></td>
+            </tr>
+        </table>
+        <br />
+        <input type="submit" value="Submit">
+    </form>
+    <br />
+    <form action="/">
+        <input type="submit" value="Home" />
+    </form>
+</body>
+
+</html>

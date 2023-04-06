@@ -1,0 +1,11 @@
+version: '1'
+
+services:
+  app:
+    build: ./
+    volumes:
+      - ./:/app
+    ports:
+      - 8002:8080
+    environment:
+      PYTHONUNBUFFERED: 1

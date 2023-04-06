@@ -1,0 +1,163 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="https://websdk.socure.com/bundle.js"></script>
+    <script type="text/javascript">
+
+        var socureDeviceId;
+        var pii = {};
+
+        function post(path, params, method = 'post') {
+
+            const form = document.createElement('form');
+            form.method = method;
+            form.action = path;
+
+            for (const key in params) {
+                if (params.hasOwnProperty(key)) {
+                    const hiddenField = document.createElement('input');
+                    hiddenField.type = 'hidden';
+                    hiddenField.name = key;
+                    hiddenField.value = params[key];
+
+                    form.appendChild(hiddenField);
+                }
+            }
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+        function onProgress(progress) {
+            console.log("onProgress: ", progress);
+        }
+
+        function onSuccess(response) {
+            console.log("onSuccess: ", response);
+            setTimeout(() => {console.log("continuing"); }, 10000);
+
+            var socureDeviceId = sessionStorage.getItem("socureDeviceId");
+
+            post("./socureOnSuccess", {
+                referenceId: response.referenceId,
+                documentUuid: response.documentUuid,
+                deviceId: socureDeviceId,
+                firstName: "{{firstName}}",
+                middleName: "{{middleName}}",
+                lastName: "{{lastName}}",
+                email: "{{email}}",
+                phone: "{{phone}}",
+                dob: "{{dob}}",
+                taxIdNumber: "{{taxIdNumber}}",
+                street1: "{{street1}}",
+                street2: "{{street2}}",
+                city: "{{city}}",
+                state: "{{state}}",
+                postal: "{{postal}}",
+                socureResponse: JSON.stringify(response)
+            });
+        }
+
+        function onError(error) {
+            console.log("onError: ", error);
+        }
+
+        var config = {
+            onProgress: onProgress, //callback method for reading the progress status
+            onSuccess: onSuccess, //callback method to read the success response
+            onError: onError, //callback method to read the error response
+            qrCodeNeeded: true //toggle the QR code display
+        };
+
+        function startSocure() {
+            SocureInitializer.init("{{socureKey}}")
+                .then(lib => {
+                    lib.init("{{socureKey}}", "#socure", config).then(function () {
+                        lib.start(1).then(function (response) {
+                            console.log(`response: ${response.referenceId}`);
+                        },
+                            function (error) {
+                                console.log(`error: ${error}`);
+                            });
+                    });
+                });
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>Create account with Socure - Submit Documents</h1>
+    <br />
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <td style="width:50%; vertical-align: top;">
+                <h2>PII</h2>
+                <table>
+                    <tr>
+                        <td width="100px">First Name</td>
+                        <td>{{firstName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Middle Name</td>
+                        <td>{{middleName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td>{{lastName}}</td>
+                    </tr>
+                    <tr>
+                        <td width="100px">Email</td>
+                        <td>{{email}}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>{{phone}}</td>
+                    </tr>
+                    <tr>
+                        <td width="100px">Date of Birth</td>
+                        <td>{{dob}}</td>
+                    </tr>
+                    <tr>
+                        <td width="100px">Tax Id Number</td>
+                        <td>{{taxIdNumber}}</td>
+                    </tr>
+                </table>
+            </td>
+            <td style="width:50%; vertical-align: top;">
+                <h2>Address</h2>
+                <table>
+                    <tr>
+                        <td width="100px">Street 1</td>
+                        <td>{{street1}}</td>
+                    </tr>
+                    <tr>
+                        <td>Street 2</td>
+                        <td>{{street2}}</td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td>{{city}}</td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td>{{state}}</td>
+                    </tr>
+                    <tr>
+                        <td>Postal/ZIP</td>
+                        <td>{{postal}}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <form action="/">
+        <input type="submit" value="Home" />
+    </form>
+    <br />
+    <div id="socure" />
+    <script>startSocure()</script>
+</body>
+
+</html>
